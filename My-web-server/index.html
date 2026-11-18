@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>User Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .card {
+        background-color: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 10px;
+      }
+      .number {
+        font-size: 56px;
+        font-weight: bold;
+        color: #007bff;
+        margin: 15px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Total Users</h1>
+      <div id="count" class="number">Loading...</div>
+      <p>Fetched live from /user-count</p>
+    </div>
+
+    <script>
+      fetch("/user-count")
+        .then((res) => res.json())
+        .then((data) => {
+          document.getElementById("count").innerText = data.total;
+        });
+    </script>
+  </body>
+</html>
